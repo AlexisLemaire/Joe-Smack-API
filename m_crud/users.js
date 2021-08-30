@@ -1,5 +1,6 @@
 const MySchema = require('../m_schemas/users') ;
-const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcrypt');
+//const bcrypt_nodejs = require('bcrypt-nodejs');
 const success = { success : 'OK' }
 
 exports.Create = (req,res) => { 
