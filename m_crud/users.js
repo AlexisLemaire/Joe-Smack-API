@@ -1,5 +1,5 @@
 const MySchema = require('../m_schemas/users') ;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 //const bcrypt_nodejs = require('bcrypt-nodejs');
 const success = { success : 'OK' }
 
