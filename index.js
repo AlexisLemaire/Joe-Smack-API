@@ -2,7 +2,7 @@ const cors = require('cors');
 const express = require('express')();
 const router = require('./router');
 const mongoose = require('mongoose');
-require("dotenv").config(); //COMMENT ON PROD
+//require("dotenv").config(); //COMMENT ON PROD
 
 mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.e54xl.mongodb.net/cook?retryWrites=true&w=majority`, 
 {useNewUrlParser: true, useUnifiedTopology: true } )
