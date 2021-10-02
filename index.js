@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 app.use(express.json()); 
 app.use(cors());
-require("dotenv").config(); //COMMENT ON PROD
+// require("dotenv").config(); //COMMENT ON PROD
 
 const mongoose = require('mongoose');
 mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.e54xl.mongodb.net/cook?retryWrites=true&w=majority`, 
@@ -32,6 +32,5 @@ app.get('/Recettes/SelectOne/:id', CRUDRecettes.SelectOne);
 app.delete('/Recettes/DeleteOne/:id/:secretKey', CRUDRecettes.DeleteOne);
 app.put('/Recettes/UpdateOne/:id', CRUDRecettes.UpdateOne);
 app.post('/Recettes/UploadImg', upload.any(), (req,res) => {}); //UPLOAD DANS IMG/
-
-// app.use(app.json()); 
+ 
 app.listen(process.env.PORT || 3001);
