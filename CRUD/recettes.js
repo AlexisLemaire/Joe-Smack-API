@@ -15,7 +15,9 @@ exports.Create = (req,res) => {
                 text: req.body.text, 
                 type: req.body.type, 
                 ingredients: req.body.ingredients, 
-                prix: req.body.prix
+                prix: req.body.prix,
+                prepDuration: req.body.prepDuration,
+                nbPersonnes: req.body.nbPersonnes
             })
             insert.save()
             .then(() => res.json(success))
@@ -90,7 +92,9 @@ exports.UpdateOne = (req,res) => {
                     text: req.body.text, 
                     type: req.body.type, 
                     ingredients: req.body.ingredients, 
-                    prix: req.body.prix
+                    prix: req.body.prix,
+                    prepDuration: req.body.prepDuration,
+                    nbPersonnes: req.body.nbPersonnes
                 }
             )
             .then(() => res.json(success))
