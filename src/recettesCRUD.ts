@@ -24,7 +24,7 @@ const Create = (req,res) => {
     }
     else {
         const title : string = req.body.title;
-        const type : string = req.body.title;
+        const type : string = req.body.type;
         const text : string = req.body.text;
         const ingredients : string[] = req.body.ingredients;
         const prix : number = req.body.prix;
@@ -52,7 +52,7 @@ const UpdateOne = (req,res) => {
     }
     else {
         const title : string = req.body.title;
-        const type : string = req.body.title;
+        const type : string = req.body.type;
         const text : string = req.body.text;
         const ingredients : string[] = req.body.ingredients;
         const prix : number = req.body.prix;

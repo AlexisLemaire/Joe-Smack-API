@@ -22,7 +22,7 @@ const Create = (req, res) => {
     }
     else {
         const title = req.body.title;
-        const type = req.body.title;
+        const type = req.body.type;
         const text = req.body.text;
         const ingredients = req.body.ingredients;
         const prix = req.body.prix;
@@ -49,7 +49,7 @@ const UpdateOne = (req, res) => {
     }
     else {
         const title = req.body.title;
-        const type = req.body.title;
+        const type = req.body.type;
         const text = req.body.text;
         const ingredients = req.body.ingredients;
         const prix = req.body.prix;
