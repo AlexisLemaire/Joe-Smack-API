@@ -1,4 +1,6 @@
 name: Node.js CI
+env: 
+  secretKey: ${{ secrets.secretKey }}
 
 on:
   push:
@@ -8,9 +10,7 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js
