@@ -40,7 +40,7 @@ const Create = (req,res) => {
             nbPersonnes: nbPersonnes
         });
         insert.save()
-        .then(recette => res.json(recette))
+        .then(recette => (recette.success = "OK", res.json(recette)))
         .catch(error => res.json({ error }));
     }
 }
@@ -70,7 +70,7 @@ const UpdateOne = (req,res) => {
                 nbPersonnes: nbPersonnes
             }
         )
-        .then(() => res.json("OK"))
+        .then(() => res.json({ success: "OK" }))
         .catch(error => res.json({ error }));
     }
 }
@@ -82,7 +82,7 @@ const DeleteOne = (req,res) => {
     else {
         const recetteID : number = req.params.id;
         RecetteSchema.deleteOne({ _id: recetteID })
-        .then(() => res.json("OK"))
+        .then(() => res.json({ success: "OK" }))
         .catch(error => res.json({ error }));
     }
 }
