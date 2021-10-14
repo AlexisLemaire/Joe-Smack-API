@@ -65,7 +65,7 @@ const UpdateOne = (req, res) => {
             prepDuration: prepDuration,
             nbPersonnes: nbPersonnes
         })
-            .then(recette => res.json(recette))
+            .then(() => res.json("OK"))
             .catch(error => res.json({ error }));
     }
 };

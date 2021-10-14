@@ -1,4 +1,5 @@
 const axios = require("axios");
+// require("dotenv").config(); // COMMENT ON PROD
 
 const fakeRecette = {
     secretKey: process.env.secretKey,
@@ -22,12 +23,24 @@ const expectedRecette = {
     nbPersonnes: expect.any(Number)
 }
 
-describe("UNIT CRUD TESTS", () => {
-    it("should post a recette and return it with id", async () => {
-        await expect(
-            (await axios.post("http://localhost:3001/Recettes/Create", fakeRecette)).data
-        )
-        .toMatchObject(expectedRecette);
-    })
-})
+describe("UNIT RECETTES CRUD TESTS", () => {
+    let id;
+
+    it("should POST a recette & verify if it was correctly POST", async () => {
+        let res = (await axios.post("http://localhost:3001/Recettes/Create", fakeRecette)).data;
+        await expect(res).toMatchObject(expectedRecette);
+        await (id = res._id);
+    });
+
+    it("should UPDATE a recette & verify if it was correctly UPDATE", async () => {
+        await (fakeRecette.title = "Epinards sans crème");
+        let res = (await axios.put(`http://localhost:3001/Recettes/UpdateOne/${id}`, fakeRecette)).data;
+        await expect(res).toEqual("OK");
+    });
+
+    it("should DELETE a recette & verify if it was correctly DELETE", async () => {
+        let res = (await axios.delete(`http://localhost:3001/Recettes/DeleteOne/${id}/${process.env.secretKey}`)).data;
+        await expect(res).toEqual("OK");
+    });
+});
 
