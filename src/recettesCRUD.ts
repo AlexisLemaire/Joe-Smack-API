@@ -40,7 +40,7 @@ const Create = (req,res) => {
             nbPersonnes: nbPersonnes
         });
         insert.save()
-        .then(recette => (recette.success = "OK", res.json(recette)))
+        .then(recette => res.json(recette))
         .catch(error => res.json({ error }));
     }
 }

@@ -5,8 +5,7 @@ const fakeRecette = fakeObjects.fakeRecette;
 describe("UNIT RECETTES CRUD TESTS", () => {
     it("should POST a recette & verify if it was correctly POST", async () => {
         let res = (await axios.post("https://joe-smack-api.herokuapp.com/Recettes/Create", fakeRecette)).data;
-        await console.log(res);
-        await expect(res).toHaveProperty("success");
+        await expect(res).toHaveProperty("_id");
         await (fakeRecette.id = res._id);
     });
 
