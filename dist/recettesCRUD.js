@@ -65,12 +65,12 @@ const UpdateOne = (req, res) => {
             prepDuration: prepDuration,
             nbPersonnes: nbPersonnes
         })
-            .then(() => res.json("OK"))
+            .then(recette => res.json(recette))
             .catch(error => res.json({ error }));
     }
 };
 const DeleteOne = (req, res) => {
-    if (req.body.secretKey !== process.env.secretKey) {
+    if (req.params.secretKey !== process.env.secretKey) {
         res.json({ error: { message: "La clef secrete est incorrecte, donc la recette n'a pas pu être supprimée" } });
     }
     else {

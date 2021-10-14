@@ -70,7 +70,7 @@ const UpdateOne = (req,res) => {
                 nbPersonnes: nbPersonnes
             }
         )
-        .then(() => res.json("OK"))
+        .then(recette => res.json(recette))
         .catch(error => res.json({ error }));
     }
 }
