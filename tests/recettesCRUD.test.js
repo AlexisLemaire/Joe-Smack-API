@@ -1,12 +1,11 @@
 const axios = require("axios");
-const fakeObjects = require("../dist/fakeObjects.js");
-const fakeRecette = fakeObjects.fakeRecette;
+const fakeRecette = require("./fakeObjects.js").fakeRecette;
 
 describe("UNIT RECETTES CRUD TESTS", () => {
     it("should POST a recette & verify if it was correctly POST", async () => {
         let res = (await axios.post("https://joe-smack-api.herokuapp.com/Recettes/Create", fakeRecette)).data;
-        await expect(res).toHaveProperty("_id");
         await (fakeRecette.id = res._id);
+        await expect(res).toHaveProperty("_id");
     });
 
     it('should SELECT the fakeRecette', async () => {
