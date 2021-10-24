@@ -20,7 +20,7 @@ const SelectOne = (req,res) => {
 
 const Create = (req,res) => { 
     if(req.body.secretKey !== process.env.secretKey){
-        res.json({ error: { message: "La clef secrete est incorrecte, donc la recette n'a pas pu être créée" } });
+        res.json({ error: "La clef secrete est incorrecte, donc la recette n'a pas pu être créée" });
     }
     else {
         const title : string = req.body.title;
@@ -50,7 +50,7 @@ const Create = (req,res) => {
 //Update une recette selon son id 
 const UpdateOne = (req,res) => { 
     if(req.body.secretKey !== process.env.secretKey){
-        res.json({ error: { message: "La clef secrete est incorrecte, donc la recette n'a pas pu être mise à jour" } });
+        res.json({ error: "La clef secrete est incorrecte, donc la recette n'a pas pu être mise à jour" });
     }
     else {
         const title : string = req.body.title;
@@ -81,7 +81,7 @@ const UpdateOne = (req,res) => {
 
 const DeleteOne = (req,res) => { 
     if(req.params.secretKey !== process.env.secretKey){
-        res.json({ error: { message: "La clef secrete est incorrecte, donc la recette n'a pas pu être supprimée" } });
+        res.json({ error: "La clef secrete est incorrecte, donc la recette n'a pas pu être supprimée" });
     }
     else {
         const recetteID : number = req.params.id;
