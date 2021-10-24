@@ -87,7 +87,7 @@ const DeleteOne = (req,res) => {
         const recetteID : number = req.params.id;
         RecetteSchema.deleteOne({ _id: recetteID })
         .then(() => res.json({ success: "OK" }))
-        .catch(error => res.json({ error }));
+        .catch(error => res.json({ error })); 
     }
 }
 
