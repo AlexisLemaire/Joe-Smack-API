@@ -30,6 +30,7 @@ const Create = (req,res) => {
         const prix : number = req.body.prix;
         const prepDuration : number = req.body.prepDuration;
         const nbPersonnes : number = req.body.nbPersonnes;
+        const imgName: string = req.body.imgName;
         const insert = new RecetteSchema({ 
             title: title, 
             text: text, 
@@ -37,7 +38,8 @@ const Create = (req,res) => {
             ingredients: ingredients, 
             prix: prix,
             prepDuration: prepDuration,
-            nbPersonnes: nbPersonnes
+            nbPersonnes: nbPersonnes,
+            imgName: imgName
         });
         insert.save()
         .then(recette => res.json(recette))
@@ -59,6 +61,7 @@ const UpdateOne = (req,res) => {
         const prepDuration : number = req.body.prepDuration;
         const nbPersonnes : number = req.body.nbPersonnes;
         const recetteID : number = req.params.id;
+        const imgName: string = req.body.imgName;
         RecetteSchema.updateOne({ _id: recetteID }, 
             { 
                 title: title, 
@@ -67,7 +70,8 @@ const UpdateOne = (req,res) => {
                 ingredients: ingredients, 
                 prix: prix,
                 prepDuration: prepDuration,
-                nbPersonnes: nbPersonnes
+                nbPersonnes: nbPersonnes,
+                imgName: imgName
             }
         )
         .then(() => res.json({ success: "OK" }))
@@ -87,20 +91,6 @@ const DeleteOne = (req,res) => {
     }
 }
 
-// Quand on upload une image, set son nom dans le schema de la recette grâce à son titre
-const UploadImg = (req,res) => { 
-    if(req.body.secretKey !== process.env.secretKey){
-        res.json({ error: { message: "La clef secrete est incorrecte, donc l'image n'a pas pu être ajoutée" } });
-    } 
-    else {
-        const title : string = req.body.title;
-        const imgName : string = req.files[0].originalname;
-        RecetteSchema.updateOne({ title: title }, { imgName: imgName })
-        .then(() => res.json("OK"))
-        .catch(error => res.json({ error }));
-    }
-}
-
 module.exports = {
-    SelectBy, SelectOne, Create, UpdateOne, DeleteOne, UploadImg
+    SelectBy, SelectOne, Create, UpdateOne, DeleteOne
 }

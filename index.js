@@ -26,7 +26,6 @@ app.get('/img/:imgName', (req,res) => {
 
 const CRUDRecettes = require('./dist/recettesCRUD.js');
 app.post('/Recettes/Create', CRUDRecettes.Create);
-app.post('/Recettes/CreateImg', upload.any(), CRUDRecettes.UploadImg); //UPLOAD DANS IMG/
 app.get('/Recettes/SelectByType/:type', CRUDRecettes.SelectBy);
 app.get('/Recettes/SelectOne/:id', CRUDRecettes.SelectOne);
 app.delete('/Recettes/DeleteOne/:id/:secretKey', CRUDRecettes.DeleteOne);
