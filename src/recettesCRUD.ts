@@ -1,3 +1,5 @@
+import { recette } from "./types/types";
+
 const RecetteSchema = require('./schemas/recettes.js');
 
 const SelectBy = (req,res) => { 
@@ -23,23 +25,16 @@ const Create = (req,res) => {
         res.json({ error: "La clef secrete est incorrecte, donc la recette n'a pas pu être créée" });
     }
     else {
-        const title : string = req.body.title;
-        const type : string = req.body.type;
-        const text : string = req.body.text;
-        const ingredients : string[] = req.body.ingredients;
-        const prix : number = req.body.prix;
-        const prepDuration : number = req.body.prepDuration;
-        const nbPersonnes : number = req.body.nbPersonnes;
-        const imgName: string = req.body.imgName;
+        const postedRecette : recette = req.body;
         const insert = new RecetteSchema({ 
-            title: title, 
-            text: text, 
-            type: type, 
-            ingredients: ingredients, 
-            prix: prix,
-            prepDuration: prepDuration,
-            nbPersonnes: nbPersonnes,
-            imgName: imgName
+            title: postedRecette.title, 
+            text: postedRecette.text, 
+            type: postedRecette.type, 
+            ingredients: postedRecette.ingredients, 
+            prix: postedRecette.prix,
+            prepDuration: postedRecette.prepDuration,
+            nbPersonnes: postedRecette.nbPersonnes,
+            imgName: postedRecette.imgName
         });
         insert.save()
         .then(recette => res.json(recette))
@@ -53,25 +48,18 @@ const UpdateOne = (req,res) => {
         res.json({ error: "La clef secrete est incorrecte, donc la recette n'a pas pu être mise à jour" });
     }
     else {
-        const title : string = req.body.title;
-        const type : string = req.body.type;
-        const text : string = req.body.text;
-        const ingredients : string[] = req.body.ingredients;
-        const prix : number = req.body.prix;
-        const prepDuration : number = req.body.prepDuration;
-        const nbPersonnes : number = req.body.nbPersonnes;
+        const postedRecette : recette = req.body;
         const recetteID : number = req.params.id;
-        const imgName: string = req.body.imgName;
         RecetteSchema.updateOne({ _id: recetteID }, 
             { 
-                title: title, 
-                text: text, 
-                type: type, 
-                ingredients: ingredients, 
-                prix: prix,
-                prepDuration: prepDuration,
-                nbPersonnes: nbPersonnes,
-                imgName: imgName
+                title: postedRecette.title, 
+                text: postedRecette.text, 
+                type: postedRecette.type, 
+                ingredients: postedRecette.ingredients, 
+                prix: postedRecette.prix,
+                prepDuration: postedRecette.prepDuration,
+                nbPersonnes: postedRecette.nbPersonnes,
+                imgName: postedRecette.imgName
             }
         )
         .then(() => res.json({ success: "OK" }))
