@@ -1,5 +1,5 @@
 const axios = require("axios");
-const fakeRecette = require("./fakeObjects.js").fakeRecette;
+const fakeRecette = require("./helpers/fakeObjects.js").fakeRecette;
 
 describe("UNIT RECETTES CRUD TESTS", () => {
     it("should POST a recette & verify if it was correctly POST", async () => {
@@ -10,7 +10,7 @@ describe("UNIT RECETTES CRUD TESTS", () => {
 
     it('should SELECT the fakeRecette', async () => {
         let res = (await axios.get(`https://joe-smack-api.herokuapp.com/Recettes/SelectOne/${fakeRecette.id}`)).data;
-        await expect(res._id).toBeDefined();
+        await expect(res).toHaveProperty("_id");
     });
 
     it("should UPDATE the fakeRecette & verify if it was correctly UPDATE", async () => {

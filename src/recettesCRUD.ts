@@ -91,6 +91,6 @@ const DeleteOne = (req,res) => {
     }
 }
 
-module.exports = {
+export default {
     SelectBy, SelectOne, Create, UpdateOne, DeleteOne
 }

@@ -1,17 +1,19 @@
-const cors = require('cors');
-const express = require('express');
+import cors from 'cors'
+import express from 'express'
+import mongoose from 'mongoose'
+import multer from 'multer'
+import CRUDRecettes from './recettesCRUD'
+
 const app = express();
 app.use(express.json()); 
 app.use(cors());
 // require("dotenv").config(); //COMMENT ON PROD
 
-const mongoose = require('mongoose');
 mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.e54xl.mongodb.net/cook?retryWrites=true&w=majority`, 
 {useNewUrlParser: true, useUnifiedTopology: true } )
 .then(() => console.log('co OK'))
 .catch(() => console.log('co ERROR'));
 
-const multer = require('multer');
 var storage = multer.diskStorage({
     destination: (req, file, cb) => { cb(null, './img'); },
     filename: (req, file, cb) => { cb(null , file.originalname); }
@@ -27,11 +29,11 @@ app.post('/Recettes/UploadImg', upload.any(), (req,res) => {
 
 // ************************************************* ROUTES *************************************************************** //
 
-const CRUDRecettes = require('./dist/recettesCRUD.js');
 app.post('/Recettes/Create', CRUDRecettes.Create);
 app.get('/Recettes/SelectByType/:type', CRUDRecettes.SelectBy);
 app.get('/Recettes/SelectOne/:id', CRUDRecettes.SelectOne);
 app.delete('/Recettes/DeleteOne/:id/:secretKey', CRUDRecettes.DeleteOne);
 app.put('/Recettes/UpdateOne/:id', CRUDRecettes.UpdateOne);
  
+console.log(`App listening on ${process.env.PORT || 3001}`)
 app.listen(process.env.PORT || 3001);
