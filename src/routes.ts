@@ -23,6 +23,4 @@ router.get('/Recettes/SelectOne/:id', CRUDRecettes.SelectOne);
 router.delete('/Recettes/DeleteOne/:id/:secretKey', CRUDRecettes.DeleteOne);
 router.put('/Recettes/UpdateOne/:id', CRUDRecettes.UpdateOne);
  
-export default {
-    router
-}
+module.exports = router;
