@@ -1,5 +1,10 @@
 import { recette } from "./types/types";
+import mongoose from 'mongoose'
 
+mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.e54xl.mongodb.net/cook?retryWrites=true&w=majority`, 
+{useNewUrlParser: true, useUnifiedTopology: true } )
+    .then(() => console.log('co OK'))
+    .catch(() => console.log('co ERROR'));
 const RecetteSchema = require('./schemas/recettes.js');
 
 const SelectBy = (req,res) => { 
